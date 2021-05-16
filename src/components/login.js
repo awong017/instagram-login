@@ -130,7 +130,7 @@ const LoginDiv = Styled.div`
 `
 
 const Login = () => {
-    const { users, loginError, handleLogin } = useContext(Context)
+    const { loginError, handleLogin } = useContext(Context)
 
     const [ loggedInUser, setLoggedInUser ] = useState({username: "", password: ""})
 

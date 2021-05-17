@@ -139,7 +139,7 @@ const LoginDiv = Styled.div`
 `
 
 const Login = () => {
-    const { users, loginError, handleLogin } = useContext(Context)
+    const { loginError, handleLogin } = useContext(Context)
 
     const [ loggedInUser, setLoggedInUser ] = useState({username: "", password: ""})
 
@@ -167,7 +167,7 @@ const Login = () => {
         <ThemeProvider theme={globalStyles}>
             <LoginDiv>
                 <form onSubmit={(e) => handleLogin(e, username.toLowerCase(), password)}>
-                    <legend onClick={() => console.log(users)}><img className="heading" src={heading} alt="heading"/></legend>
+                    <legend><img className="heading" src={heading} alt="heading"/></legend>
                     <fieldset className="login-info">
                         <input 
                             className="login-input" 

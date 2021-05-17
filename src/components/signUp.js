@@ -157,7 +157,7 @@ const SignUpDiv = Styled.div`
 `
 
 const SignUp = () => {
-    const { users, signUpError, handleSignUp } = useContext(Context)
+    const { signUpError, handleSignUp } = useContext(Context)
 
     const [ signedInUser, setSignedInUser ] = useState(
         {
@@ -193,7 +193,7 @@ const SignUp = () => {
         <ThemeProvider theme={globalStyles}>
             <SignUpDiv>
                 <form onSubmit={(e) => handleSignUp(e, contact, firstname, lastname, username, password)}>
-                    <legend onClick={() => console.log(users)}><img className="heading" src={heading} alt="heading"/></legend>
+                    <legend><img className="heading" src={heading} alt="heading"/></legend>
                     <fieldset className="alt-login">
                         <div className="greeting">Sign up to see photos and videos from your friends.</div>
                         <div className="facebook">

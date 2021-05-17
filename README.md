@@ -5,9 +5,9 @@ Instagram login page clone
 ## Functionalities
 
 1) Login
-    a) Guests can log in with the following credentials:
-        username: guest
-        password: welcome
+   - Guests can log in with the following credentials:
+     - username: guest
+     - password: welcome
 2) Log out
 3) Sign up
 4) Live app store and google play links

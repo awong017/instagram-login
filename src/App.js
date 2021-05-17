@@ -115,6 +115,8 @@ const App = (props) => {
             phone: ""
           }
 
+          setUsers([newUser])
+
           const url = `${Config.API_ENDPOINT}/api/users`;
           const options = {
             method: 'POST',
@@ -132,7 +134,6 @@ const App = (props) => {
                 return res.json();
             })
 
-          setUsers([...users, newUser])
           props.history.push("/")
         }
         else {
@@ -143,9 +144,11 @@ const App = (props) => {
             firstname: firstname.toLowerCase(),
             lastname: lastname.toLowerCase(),
             password: password,
-            phone: parseInt(contact.replace(/[\W]/g, ""))
+            phone: contact.replace(/[\W]/g, "")
           }
-          
+
+          setUsers([newUser])
+
           const url = `${Config.API_ENDPOINT}/api/users`;
           const options = {
             method: 'POST',
@@ -162,8 +165,7 @@ const App = (props) => {
               }
                 return res.json();
             })
-
-          setUsers([...users, newUser])
+            
           props.history.push("/")
         }
       }
@@ -171,6 +173,7 @@ const App = (props) => {
   }
 
   const handleSignOut = () => {
+    setUsers([])
     setCurrentUser({})
     props.history.push("/")
   }

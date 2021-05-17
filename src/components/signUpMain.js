@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import Context from '../context'
+import Config from '../config'
 import SignUp from './signUp'
 import LoginLink from './loginLink'
 import AppStore from './appStore'
@@ -11,6 +13,16 @@ const SignUpMainDiv = Styled.div`
 `
 
 const SignUpMain = () => {
+    const { users, setUsers } = useContext(Context)
+
+    useEffect(() => {
+        let isSubscribed = true;
+        fetch(`${Config.API_ENDPOINT}/api/users`)
+            .then(res => (isSubscribed ? res.json().then(resJson => setUsers([...users, ...resJson])) : null))
+            .catch(error => (isSubscribed ? console.log(error.toString()) : null))
+        return () => isSubscribed = false 
+    }, []) 
+
     return (
         <ThemeProvider theme={styles}>
             <SignUpMainDiv>

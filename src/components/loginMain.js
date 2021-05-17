@@ -15,12 +15,12 @@ const LoginMainDiv = Styled.div`
 `
 
 const LoginMain = () => {
-    const { setUsers } = useContext(Context)
+    const { users, setUsers } = useContext(Context)
 
     useEffect(() => {
         let isSubscribed = true;
         fetch(`${Config.API_ENDPOINT}/api/users`)
-            .then(res => (isSubscribed ? res.json().then(resJson => setUsers(resJson)) : null))
+            .then(res => (isSubscribed ? res.json().then(resJson => setUsers([...users, ...resJson])) : null))
             .catch(error => (isSubscribed ? console.log(error.toString()) : null))
         return () => isSubscribed = false 
     }, []) 

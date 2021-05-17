@@ -28,13 +28,13 @@ const LoginLinkDiv = Styled.div`
 `
 
 const LoginLink = () => {
-    const { setSignUpError } = useContext(Context)
+    const { setUsers, setSignUpError } = useContext(Context)
 
     return (
         <ThemeProvider theme={styles}>
             <LoginLinkDiv>
                 <div>Have an account?</div>
-                <Link to={"/login"} onClick={() => setSignUpError({error: ""})}>Log in</Link>
+                <Link to={"/login"} onClick={() => {setSignUpError({error: ""}); setUsers([])}}>Log in</Link>
             </LoginLinkDiv>
         </ThemeProvider>
     )

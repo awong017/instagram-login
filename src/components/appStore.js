@@ -26,6 +26,10 @@ const AppStoreDiv = Styled.div`
             margin-left: 4px;
         }
     }
+
+    @media screen and (max-width: 440px) {
+        display: none;
+    }
 `
 
 const AppStore = () => {

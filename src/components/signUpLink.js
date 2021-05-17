@@ -26,6 +26,11 @@ const SignUpLinkDiv = Styled.div`
         font-weight: 600;
         color: ${(props) => props.theme.signUp}
     }
+
+    @media screen and (max-width: 440px) {
+        border: none;
+        background-color: #fafafa;
+    }
 `
 
 const SignUpLink = () => {

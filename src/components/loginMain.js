@@ -12,6 +12,10 @@ const LoginMainDiv = Styled.div`
     margin-right: auto;
     margin-left: auto;
     width: 350px;
+
+    @media screen and (max-width: 440px) {
+        margin-top: 24px;
+    }
 `
 
 const LoginMain = () => {

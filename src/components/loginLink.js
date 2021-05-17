@@ -25,6 +25,11 @@ const LoginLinkDiv = Styled.div`
         text-decoration: none;
         color: ${(props) => props.theme.signUp}
     }
+
+    @media screen and (max-width: 440px) {
+        border: none;
+        background-color: #fafafa;
+    }
 `
 
 const LoginLink = () => {

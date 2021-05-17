@@ -105,6 +105,10 @@ const SignUpDiv = Styled.div`
             height: 20px;
             background-color: ${(props) => props.theme.input};
             font-size: 11px;
+
+            &:focus {
+                outline: none;
+            }
         }
 
         .policy {
@@ -144,6 +148,12 @@ const SignUpDiv = Styled.div`
             border-top: 1px solid #dbdbdb;
             width: 107px;
         }
+    }
+
+    @media screen and (max-width: 440px) {
+        margin: 24px auto 10px auto;
+        border: none;
+        background-color: #fafafa;
     }
 `
 

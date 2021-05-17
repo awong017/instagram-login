@@ -160,6 +160,8 @@ const App = (props) => {
     }
   }
 
+  // Method for signing out
+
   const handleSignOut = () => {
     setUsers([])
     setCurrentUser()

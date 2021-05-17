@@ -10,6 +10,10 @@ import styles from '../styles/globalStyles'
 const SignUpMainDiv = Styled.div`
     margin: 48px auto 0 auto;
     width: 350px;
+
+    @media screen and (max-width: 440px) {
+        margin-top: 24px;
+    }
 `
 
 const SignUpMain = () => {

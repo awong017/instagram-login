@@ -31,7 +31,7 @@ const FooterDiv = Styled.div`
         }
     }
 
-    @media screen and (max-height: 700px) {
+    @media screen and (max-height: 800px) {
         position: initial;
         left: inital;
         bottom: initial;
@@ -39,6 +39,10 @@ const FooterDiv = Styled.div`
         margin-bottom: 52px;
         width: initial;
         padding-bottom: 0;
+    }
+
+    @media screen and (max-width: 440px) {
+        display: none;
     }
 `
 

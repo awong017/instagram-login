@@ -174,7 +174,7 @@ const App = (props) => {
 
   const handleSignOut = () => {
     setUsers([])
-    setCurrentUser({})
+    setCurrentUser()
     props.history.push("/")
   }
 

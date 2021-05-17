@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Redirect } from 'react-router-dom'
 import Context from './context'
 import Config from './config'
 import uuid from 'uuid/dist/v4'
@@ -13,18 +13,6 @@ import Styled from 'styled-components'
 const AppDiv = Styled.div`
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif
 `
-
-const renderRoutes = () => {
-  return (
-    <>
-      <Route exact path="/" component={Landing}/>
-      <Route exact path="/home" component={Home}/>
-      <Route path="/signUp" component={SignUpMain} />
-      <Route path="/login" component={LoginMain} />
-      <Route path="/" component={Footer} />
-    </>
-  )
-}
 
 const App = (props) => {
   const [ users, setUsers ] = useState([])
@@ -45,13 +33,13 @@ const App = (props) => {
     if (
       users.some(user => user.username === name) === false &&
       users.some(user => user.email === name) === false &&
-      users.some(user => user.phone === parseInt(name.replace(/[\W]/g, ""))) === false
+      users.some(user => user.phone === name.replace(/[\W]/g, "")) === false
     ) {
       setLoginError({error: "The username you entered doesn't belong to an account. Please check your username and try again."})
     }
     else {
       if (name.replace(/[\W]/g, "").length === name.split("").map(item => parseInt(item)).filter(Number.isInteger).length) {
-        userAccount = users.find(user => user.phone === parseInt(name.replace(/[\W]/g, "")))
+        userAccount = users.find(user => user.phone === name.replace(/[\W]/g, ""))
       }
       else if (name.includes("@")) {
         userAccount = users.find(user => user.email === name)
@@ -117,7 +105,7 @@ const App = (props) => {
 
           setUsers([newUser])
 
-          const url = `${Config.API_ENDPOINT}/api/users`;
+          const url = `${Config}/api/users`;
           const options = {
             method: 'POST',
             body: JSON.stringify(newUser),
@@ -140,7 +128,7 @@ const App = (props) => {
           const newUser = {
             id: uuid(),
             email: "",
-            username: username,
+            username: username.toLowerCase(),
             firstname: firstname.toLowerCase(),
             lastname: lastname.toLowerCase(),
             password: password,
@@ -149,7 +137,7 @@ const App = (props) => {
 
           setUsers([newUser])
 
-          const url = `${Config.API_ENDPOINT}/api/users`;
+          const url = `${Config}/api/users`;
           const options = {
             method: 'POST',
             body: JSON.stringify(newUser),
@@ -176,6 +164,20 @@ const App = (props) => {
     setUsers([])
     setCurrentUser()
     props.history.push("/")
+  }
+
+  const renderRoutes = () => {
+    return (
+      <>
+        <Route exact path="/" component={Landing}/>
+        <Route exact path="/home">
+          {!currentUser ? <Redirect to="/" /> : <Home />}
+        </Route>
+        <Route path="/signUp" component={SignUpMain} />
+        <Route path="/login" component={LoginMain} />
+        <Route path="/" component={Footer} />
+      </>
+    )
   }
 
   const contextValue = {

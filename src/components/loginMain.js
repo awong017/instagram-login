@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import Context from '../context'
 import Config from '../config'
 import Login from './login'
@@ -17,13 +17,16 @@ const LoginMainDiv = Styled.div`
 const LoginMain = () => {
     const { users, setUsers } = useContext(Context)
 
+    let hasFetchedData = useRef(false)
+
     useEffect(() => {
-        let isSubscribed = true;
-        fetch(`${Config.API_ENDPOINT}/api/users`)
-            .then(res => (isSubscribed ? res.json().then(resJson => setUsers([...users, ...resJson])) : null))
-            .catch(error => (isSubscribed ? console.log(error.toString()) : null))
-        return () => isSubscribed = false 
-    }, []) 
+        if (!hasFetchedData.current) {
+            fetch(`${Config}/api/users`)
+                .then(res => (res.json().then(resJson => setUsers([...users, ...resJson]))))
+                .catch(error => (console.log(error.toString())))
+            hasFetchedData.current = true
+        }
+    }) 
 
     return (
         <ThemeProvider theme={styles}>

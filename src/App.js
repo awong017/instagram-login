@@ -171,13 +171,13 @@ const App = (props) => {
   const renderRoutes = () => {
     return (
       <>
-        <Route exact path="/" component={Landing}/>
+        <Route exact path="/" component={Landing} />
         <Route exact path="/home">
           {!currentUser ? <Redirect to="/" /> : <Home />}
         </Route>
         <Route path="/signUp" component={SignUpMain} />
         <Route path="/login" component={LoginMain} />
-        <Route path="/" component={Footer} />
+        <Route exact path={["/", "/login", "/signUp"]} component={Footer} />
       </>
     )
   }

@@ -21,7 +21,6 @@ const LandingDiv = Styled.div`
     }
 `
 
-
 const Landing = () => {
     return (
         <ThemeProvider theme={styles}>

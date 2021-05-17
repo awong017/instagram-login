@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import Context from './context'
+import Config from './config'
 import uuid from 'uuid/dist/v4'
 import Landing from './components/landing'
 import Home from './components/home'
@@ -26,19 +27,7 @@ const renderRoutes = () => {
 }
 
 const App = (props) => {
-  const [ users, setUsers ] = useState(
-    [
-      {
-        id: 1,
-        email: "awong017@ucr.edu",
-        firstname: "adam",
-        lastname: "wong",
-        username: "awong017",
-        password: "password",
-        phone: 5555555555
-      }
-    ]
-  )
+  const [ users, setUsers ] = useState([])
 
   const [ loginError, setLoginError ] = useState({error: ""})
 
@@ -125,6 +114,24 @@ const App = (props) => {
             password: password,
             phone: ""
           }
+
+          const url = `${Config.API_ENDPOINT}/api/users`;
+          const options = {
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }
+
+          fetch(url, options)
+            .then(res => {
+              if(!res.ok) {
+                throw new Error('Something went wrong, please try again later');
+              }
+                return res.json();
+            })
+
           setUsers([...users, newUser])
           props.history.push("/")
         }
@@ -136,8 +143,26 @@ const App = (props) => {
             firstname: firstname.toLowerCase(),
             lastname: lastname.toLowerCase(),
             password: password,
-            phone: contact
+            phone: parseInt(contact.replace(/[\W]/g, ""))
+          }
+          
+          const url = `${Config.API_ENDPOINT}/api/users`;
+          const options = {
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers: {
+              "Content-Type": "application/json"
             }
+          }
+  
+          fetch(url, options)
+            .then(res => {
+              if(!res.ok) {
+                throw new Error('Something went wrong, please try again later');
+              }
+                return res.json();
+            })
+
           setUsers([...users, newUser])
           props.history.push("/")
         }
@@ -152,6 +177,7 @@ const App = (props) => {
 
   const contextValue = {
     users: users,
+    setUsers: setUsers,
     loginError: loginError,
     setLoginError: setLoginError,
     signUpError: signUpError,

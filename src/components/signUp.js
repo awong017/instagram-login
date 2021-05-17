@@ -213,7 +213,7 @@ const SignUp = () => {
                             placeholder="Mobile Number or Email"
                             onChange={(e) => setSignedInUser(
                                 {
-                                    contact: e.target.value,
+                                    contact: e.target.value.replace(/\s/g, ''),
                                     firstname: firstname,
                                     lastname: lastname,
                                     username: username,
@@ -244,7 +244,7 @@ const SignUp = () => {
                                     contact: contact,
                                     firstname: firstname,
                                     lastname: lastname,
-                                    username: e.target.value,
+                                    username: e.target.value.replace(/\s/g, ''),
                                     password: password
                                 }
                             )}
@@ -259,7 +259,7 @@ const SignUp = () => {
                                     firstname: firstname,
                                     lastname: lastname,
                                     username: username,
-                                    password: e.target.value
+                                    password: e.target.value.replace(/\s/g, '')
                                 }
                             )}
                         />

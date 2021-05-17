@@ -166,14 +166,14 @@ const Login = () => {
     return (
         <ThemeProvider theme={globalStyles}>
             <LoginDiv>
-                <form onSubmit={(e) => handleLogin(e, username.toLowerCase(), password)}>
+                <form onSubmit={(e) => handleLogin(e, username, password)}>
                     <legend><img className="heading" src={heading} alt="heading"/></legend>
                     <fieldset className="login-info">
                         <input 
                             className="login-input" 
                             type="text" 
                             placeholder="Phone number, username, or email"
-                            onChange={(e) => setLoggedInUser({username: e.target.value, password: password})}
+                            onChange={(e) => setLoggedInUser({username: e.target.value.replace(/\s/g, '').toLowerCase(), password: password})}
                         />
                         <input 
                             className ="login-input" 

@@ -28,7 +28,6 @@ const LoginLinkDiv = Styled.div`
 
     @media screen and (max-width: 440px) {
         border: none;
-        background-color: #fafafa;
     }
 `
 

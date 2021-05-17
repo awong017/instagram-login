@@ -153,7 +153,6 @@ const SignUpDiv = Styled.div`
     @media screen and (max-width: 440px) {
         margin: 24px auto 10px auto;
         border: none;
-        background-color: #fafafa;
     }
 `
 

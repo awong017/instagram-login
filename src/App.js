@@ -43,7 +43,7 @@ const App = (props) => {
     let userAccount = {};
 
     if (
-      users.some(user => user.username.toLowerCase() === name.toLowerCase()) === false &&
+      users.some(user => user.username === name) === false &&
       users.some(user => user.email === name) === false &&
       users.some(user => user.phone === parseInt(name.replace(/[\W]/g, ""))) === false
     ) {
@@ -57,7 +57,7 @@ const App = (props) => {
         userAccount = users.find(user => user.email === name)
       }
       else {
-        userAccount = users.find(user => user.username.toLowerCase() === name.toLowerCase())
+        userAccount = users.find(user => user.username === name)
       }
       if (userAccount.password !== password) {
         setLoginError({error: "Sorry, your password was incorrect. Please double-check your password."})
@@ -72,7 +72,7 @@ const App = (props) => {
             firstname: userAccount.firstname,
             lastname: userAccount.lastname,
             password: userAccount.password,
-            phone: parseInt(userAccount.phone),
+            phone: userAccount.phone
           }
         )
       props.history.push("/home")
@@ -107,8 +107,8 @@ const App = (props) => {
         if (contact.includes("@")) {
           const newUser = {
             id: uuid(),
-            email: contact,
-            username: username,
+            email: contact.toLowerCase(),
+            username: username.toLowerCase(),
             firstname: firstname.toLowerCase(),
             lastname: lastname.toLowerCase(),
             password: password,

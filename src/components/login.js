@@ -157,7 +157,7 @@ const Login = () => {
     return (
         <ThemeProvider theme={globalStyles}>
             <LoginDiv>
-                <form onSubmit={(e) => handleLogin(e, username, password)}>
+                <form onSubmit={(e) => handleLogin(e, username.toLowerCase(), password)}>
                     <legend><img className="heading" src={heading} alt="heading"/></legend>
                     <fieldset className="login-info">
                         <input 
